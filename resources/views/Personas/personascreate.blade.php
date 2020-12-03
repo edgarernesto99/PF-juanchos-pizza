@@ -30,9 +30,6 @@
             <label for="apellidos">Apellidos:</label><br>
             <input type="text" name="apellidos" class= "form-control" id="apellidos" value="{{ old('apellidos') ?? $persona->apellidos ?? '' }}"><br>
 
-            <label for="correo">Correo:</label><br>
-            <input type="email" name="correo" class= "form-control" id="correo" value="{{ old('correo') ?? $persona->correo ?? '' }}"><br>
-
             <label for="telefono">Telefono:</label><br>
             <input type="tel" name="telefono"  class= "form-control" id="telefono" value="{{ old('telefono') ?? $persona->telefono ?? '' }}"><br>
 

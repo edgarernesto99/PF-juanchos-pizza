@@ -51,6 +51,7 @@ class ProductosController extends Controller
         $producto->tamanio = $request->tamanio;
         $producto->imagen = $request->file('file-image')->store('public');
         $producto->save();
+        //\Session::flash('flash_message','successfully saved.');
         return redirect('productos');
     }
 

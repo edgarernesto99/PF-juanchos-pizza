@@ -25,7 +25,7 @@ Route::resource('personas', PersonaController::class);
 
 Route::get('/inicio', function () {
     return view('/inicio');
-});
+})->name('inicio');
 
 Route::get('/menu', function () {
     return redirect("/productos");

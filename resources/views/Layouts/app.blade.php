@@ -31,6 +31,7 @@
 
             <!-- Page Content -->
             <main>
+            <a href="{{route('inicio')}}">Ir a página principal</a>
                 {{ $slot }}
             </main>
         </div>

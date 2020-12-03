@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Persona;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PersonaController extends Controller
 {
@@ -14,6 +15,18 @@ class PersonaController extends Controller
      */
     public function index()
     {
+        if (Auth::check()) {
+            $persona = Persona::where('user_id' ,'=' , Auth::id())->first();
+            if (empty($persona)) {
+                return view('personas/personascreate');
+            }
+            //Aqui lo mando a personas.show
+            else {
+                //return view('personas/personasshow', compact('persona'))
+                return self::show($persona);
+            }
+        }
+
         $personas = Persona::get();
         return view('personas/personasindex', compact('personas'));
     }
@@ -39,15 +52,13 @@ class PersonaController extends Controller
         $request->validate([
             'nombre' => 'required',
             'apellidos' => 'required',
-            'correo' => 'required|email|unique:personas,correo,',
             'telefono' => 'required|numeric'
         ]);
         $persona = new Persona();
         $persona->nombre = $request->nombre;
         $persona->apellidos = $request->apellidos;
-        $persona->correo = $request->correo;
         $persona->telefono = $request->telefono;
-        $persona->save();
+        Auth::user()->persona()->save($persona);
         return redirect('personas');
     }
 

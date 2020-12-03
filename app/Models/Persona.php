@@ -9,5 +9,10 @@ class Persona extends Model
 {
     use HasFactory;
     protected $table = "personas";
-    protected $fillable = ['nombre','apellidos','correo','telefono'];
+    protected $fillable = ['nombre','apellidos','telefono'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

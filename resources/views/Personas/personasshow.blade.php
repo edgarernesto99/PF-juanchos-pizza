@@ -20,7 +20,6 @@
             <tr>
                 <th>Nombre</th>
                 <th>Apellidos</th>
-                <th>Correo</th>
                 <th>Telefono</th>
             </tr>
             <tr>
@@ -28,7 +27,6 @@
                     <a href="{{route('personas.show',[$persona->id])}}"><h4>{{$persona->nombre}}</h4></a>
                 </td>
                 <td>{{$persona->apellidos}}</td>
-                <td>{{$persona->correo}}</td>
                 <td>{{$persona->telefono}}</td>
             </tr>
         </table>

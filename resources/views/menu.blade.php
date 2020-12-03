@@ -1,1 +1,1 @@
-@include("route('usuario.create') }}")
+@include("Productos@index")

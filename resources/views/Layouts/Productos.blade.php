@@ -49,7 +49,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<h2>Siempre Horneando su felicidad</h2>
 				</div>
 				<!--navigation-->
-				@include("Layouts/menunav")
+				@include("/Layouts/menunav")
 				<!--navigation-->
 			</div>
 		</div>
