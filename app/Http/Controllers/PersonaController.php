@@ -96,7 +96,6 @@ class PersonaController extends Controller
         $request->validate([
             'nombre' => 'required',
             'apellidos' => 'required',
-            'correo' => 'required|email|unique:personas,correo,'.$persona->id,
             'telefono' => 'required',
         ]);
         Persona::where('id', $persona->id)
