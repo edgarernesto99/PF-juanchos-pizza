@@ -34,7 +34,6 @@
             <input type="tel" name="telefono"  class= "form-control" id="telefono" value="{{ old('telefono') ?? $persona->telefono ?? '' }}"><br>
 
             <input type="submit" value="Enviar">
-
         </form>
     </div>
     @endsection

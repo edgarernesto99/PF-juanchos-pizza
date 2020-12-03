@@ -12,8 +12,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav cl-effect-14">
-                <li><a href="inicio" class="active">Inicio</a></li>
-                <li><a href="menu">Menu</a></li>
+                <li><a href="{{ route('inicio') }}" class="active">Inicio</a></li>
+                <li><a href="{{ route('menu') }}">Menu</a></li>
                 <li><a href="about.html">Información</a></li>
             </ul>
             <div class="btn-group">
@@ -22,7 +22,7 @@
                 </button>
 
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="{{url('personas') }}">Perfil</a></li>
+                    <li><a href="{{ route('personas.index') }}">Perfil</a></li>
                     <li><a href="#">Direcciones</a></li>
                     <li><a href="#">Pedidos</a></li>
                     <li><a href="{{url('dashboard')}}">Dashboard</a></li>

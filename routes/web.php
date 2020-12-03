@@ -29,7 +29,7 @@ Route::get('/inicio', function () {
 
 Route::get('/menu', function () {
     return redirect("/productos");
-});
+})->name('menu');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
