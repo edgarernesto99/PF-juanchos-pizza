@@ -10,4 +10,18 @@ class Producto extends Model
     use HasFactory;
     protected $table = "productos";
     protected $fillable = ['nombre','descripcion','precio','tipo','tamanio','imagen'];
+
+   
+    public function SetNombreAttribute($value)
+    {
+        $this->attributes['nombre'] = ucfirst(strtolower($value));
+    }
+    public function getDescripcionAttribute($value)
+    {
+        return ucfirst(strtolower($value));
+    }
+    public function getTipoAttribute($value)
+    {
+        return ucfirst(strtolower($value));
+    }
 }

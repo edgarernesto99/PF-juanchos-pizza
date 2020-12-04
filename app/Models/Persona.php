@@ -15,4 +15,15 @@ class Persona extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function getApellidosAttribute($value)
+    {
+        return ucfirst(strtolower($value));
+    }
+
+    public function SetNombreAttribute($value)
+    {
+        $this->attributes['nombre'] = ucfirst(strtolower($value));
+    }
+
+    
 }
