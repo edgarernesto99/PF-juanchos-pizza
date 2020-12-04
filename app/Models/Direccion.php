@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Direccion extends Model
 {
     use HasFactory;
-    protected $table = "direcciones";
-    protected $fillable = ['calle','num_exterior','num_interior','colonia','referencias'];
+
+    protected $table = 'direcciones';
+    protected $fillable = ['calle_numero','colonia','ciudad','referencias'];
     public $timestamps = false;
 
     public function user() {

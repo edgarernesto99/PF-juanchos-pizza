@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DireccionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\PersonaController;
@@ -20,8 +21,8 @@ Route::get('/', function () {
 });
 
 Route::resource('productos', ProductosController::class);
-
 Route::resource('personas', PersonaController::class);
+Route::resource('direcciones', DireccionController::class);
 
 Route::get('/inicio', function () {
     return view('/inicio');

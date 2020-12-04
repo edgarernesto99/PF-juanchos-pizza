@@ -23,7 +23,7 @@
 
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="{{ route('personas.index') }}">Perfil</a></li>
-                    <li><a href="#">Direcciones</a></li>
+                    <li><a href="{{ route('direcciones.index') }}">Direcciones</a></li>
                     <li><a href="#">Pedidos</a></li>
                     <li><a href="{{url('dashboard')}}">Dashboard</a></li>
                 </ul>

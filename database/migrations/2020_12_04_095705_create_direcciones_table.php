@@ -16,10 +16,9 @@ class CreateDireccionesTable extends Migration
         Schema::create('direcciones', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('calle', 100);
-            $table->string('num_exterior', 100);
-            $table->string('num_interior', 100);
+            $table->string('calle_numero', 100);
             $table->string('colonia', 100);
+            $table->string('ciudad', 100);
             $table->string('referencias', 100);
         });
     }
