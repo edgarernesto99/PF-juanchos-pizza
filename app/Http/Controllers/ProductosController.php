@@ -51,7 +51,6 @@ class ProductosController extends Controller
         $producto->tamanio = $request->tamanio;
         $producto->imagen = $request->file('file-image')->store('public');
         $producto->save();
-        //\Session::flash('flash_message','successfully saved.');
         return redirect('productos');
     }
 
@@ -111,5 +110,28 @@ class ProductosController extends Controller
     {
         $producto->delete();
         return redirect()->route("productos.index");
+    }
+
+    public function addToCart(Request $request, Producto $producto) {
+        $registro = $producto->users()->find(\Auth::id());
+        if (!empty($registro)) {
+            $producto->users()->updateExistingPivot(\Auth::id(),
+            ['cantidad'=>($registro->pivot->cantidad+$request->cantidad)], false);
+        }
+        else {
+            $producto->users()->attach(\Auth::id(), ['cantidad' => $request->cantidad]);
+        }
+        return redirect()->route('menu');
+    }
+
+    public function showCart() {
+        $contenido = \Auth::user()->productos()->get();
+        $contenido->toArray();
+        return view('productos/productosshowcart', compact('contenido'));
+    }
+    public function removeFromCart(Producto $producto) {
+        //\DB::delete('delete producto_user where user_id = ? && producto_id = ?', [\Auth::id(), $producto->id]);
+        \Auth::user()->productos()->detach($producto->id);
+        return redirect()->route('productos.showCart');
     }
 }

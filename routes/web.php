@@ -20,6 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('productos/addToCart/{producto}', [ProductosController::class, 'addToCart'])->name('productos.addToCart');
+Route::get('productos/showCart', [ProductosController::class, 'showCart'])->name('productos.showCart');
+Route::delete('productos/removeFromCart/{producto}', [ProductosController::class, 'removeFromCart'])->name('productos.removeFromCart');
 Route::resource('productos', ProductosController::class);
 Route::resource('personas', PersonaController::class);
 Route::resource('direcciones', DireccionController::class);

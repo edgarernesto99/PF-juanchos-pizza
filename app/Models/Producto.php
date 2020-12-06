@@ -11,7 +11,7 @@ class Producto extends Model
     protected $table = "productos";
     protected $fillable = ['nombre','descripcion','precio','tipo','tamanio','imagen'];
 
-   
+
     public function SetNombreAttribute($value)
     {
         $this->attributes['nombre'] = ucfirst(strtolower($value));
@@ -23,5 +23,10 @@ class Producto extends Model
     public function getTipoAttribute($value)
     {
         return ucfirst(strtolower($value));
+    }
+
+    //Aqui van las relaciones con otras tablas
+    public function users() {
+        return $this->belongsToMany(User::class)->withPivot('cantidad');
     }
 }
