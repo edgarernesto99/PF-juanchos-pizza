@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DireccionController;
+use App\Http\Controllers\PedidoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\PersonaController;
@@ -26,6 +27,7 @@ Route::delete('productos/removeFromCart/{producto}', [ProductosController::class
 Route::resource('productos', ProductosController::class);
 Route::resource('personas', PersonaController::class);
 Route::resource('direcciones', DireccionController::class);
+Route::resource('pedidos', PedidoController::class);
 
 Route::get('/inicio', function () {
     return view('/inicio');

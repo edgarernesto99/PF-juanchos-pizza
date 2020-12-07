@@ -71,4 +71,8 @@ class User extends Authenticatable
     public function productos() {
         return $this->belongsToMany(Producto::class)->withPivot('cantidad');
     }
+
+    public function pedidos() {
+        return $this->hasMany(Pedido::class);
+    }
 }

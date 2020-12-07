@@ -16,4 +16,9 @@ class Direccion extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    //Relacion con pedidos
+    public function pedidos() {
+        return $this->hasMany(Pedido::class);
+    }
 }

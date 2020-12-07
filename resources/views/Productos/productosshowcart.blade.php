@@ -32,9 +32,11 @@
                     @endforeach
                 </table>
             </div>
-            <div class="flex-left boton">
-                <a href="{{ route('direcciones.create') }}" class="boton btn btn-primary">Completar pedido</a>
-            </div>
+            @if (!$contenido->isEmpty())
+                <div class="flex-left boton">
+                    <a href="{{ route('pedidos.create') }}" class="boton btn btn-primary">Completar pedido</a>
+                </div>
+            @endif
         </div>
     </div>
 </div>
