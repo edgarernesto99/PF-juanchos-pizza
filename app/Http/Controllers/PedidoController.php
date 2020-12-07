@@ -57,7 +57,10 @@ class PedidoController extends Controller
         \Auth::user()->productos()->detach();
         $pedido->total = $total;
         $pedido->save();
-        return redirect('pedidos');
+        return redirect('pedidos')->with([
+            'msj'=>'Pedido realizado',
+            'alert-type'=>'alert-success'
+        ]);
     }
 
     /**

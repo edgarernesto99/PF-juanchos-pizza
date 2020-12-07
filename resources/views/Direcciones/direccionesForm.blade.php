@@ -1,5 +1,5 @@
-@extends('Layouts.Direcciones')
-@section('menu-direcciones')
+@extends('Layouts.tema')
+@section('content')
 <div class="container">
     <div>
         @if (isset($direccion))

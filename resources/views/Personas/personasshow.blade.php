@@ -1,5 +1,5 @@
-@extends('Layouts.Personas')
-@section('menu-personas')
+@extends('Layouts.tema')
+@section('content')
 <div class="show-people">
     <div class="col-md-4">
         <a href="{{route('personas.edit',[$persona->id])}}" class="btn btn-primary btn-block">Editar Persona</a>

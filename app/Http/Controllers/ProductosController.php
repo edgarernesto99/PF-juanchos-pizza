@@ -51,7 +51,10 @@ class ProductosController extends Controller
         $producto->tamanio = $request->tamanio;
         $producto->imagen = $request->file('file-image')->store('public');
         $producto->save();
-        return redirect('productos');
+        return redirect('productos')->with([
+            'msj'=>'Producto agregado exitosamente',
+            'alert-type'=>'alert-success'
+        ]);
     }
 
     /**
@@ -97,7 +100,10 @@ class ProductosController extends Controller
         Producto::where('id', $producto->id)
             ->update($request->except('_method', '_token','file-image'));
 
-        return redirect()->route('productos.show', [$producto]);
+        return redirect()->route('productos.show', [$producto])->with([
+            'msj'=>'Producto actualizado exitosamente',
+            'alert-type'=>'alert-success'
+        ]);
     }
 
     /**
@@ -109,7 +115,10 @@ class ProductosController extends Controller
     public function destroy(Producto $producto)
     {
         $producto->delete();
-        return redirect()->route("productos.index");
+        return redirect()->route("productos.index")->with([
+            'msj'=>'Acabas de eliminar un producto',
+            'alert-type'=>'alert-warning'
+        ]);
     }
 
     public function addToCart(Request $request, Producto $producto) {
@@ -121,7 +130,10 @@ class ProductosController extends Controller
         else {
             $producto->users()->attach(\Auth::id(), ['cantidad' => $request->cantidad]);
         }
-        return redirect()->route('menu');
+        return redirect()->route('menu')->with([
+            'msj'=>'Producto agregado al carrito',
+            'alert-type'=>'alert-success'
+        ]);
     }
 
     public function showCart() {
@@ -132,6 +144,9 @@ class ProductosController extends Controller
     public function removeFromCart(Producto $producto) {
         //\DB::delete('delete producto_user where user_id = ? && producto_id = ?', [\Auth::id(), $producto->id]);
         \Auth::user()->productos()->detach($producto->id);
-        return redirect()->route('productos.showCart');
+        return redirect()->route('productos.showCart')->with([
+            'msj'=>'Producto quitado del carrito',
+            'alert-type'=>'alert-warning'
+        ]);
     }
 }

@@ -56,8 +56,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!--//banner-->
 
-	<!--menu-->
-	@yield('menu-direcciones')
+    <!--menu-->
+    @include("/mensajes");
+	@yield('content')
 	<!--//menu-->
 
 	<!--footer-->

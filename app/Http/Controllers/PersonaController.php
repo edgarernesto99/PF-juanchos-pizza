@@ -59,7 +59,10 @@ class PersonaController extends Controller
         $persona->apellidos = $request->apellidos;
         $persona->telefono = $request->telefono;
         Auth::user()->persona()->save($persona);
-        return redirect('personas');
+        return redirect('personas')->with([
+            'msj'=>'Información guardada exitosamente',
+            'alert-type'=>'alert-success'
+        ]);
     }
 
     /**
@@ -101,7 +104,10 @@ class PersonaController extends Controller
         Persona::where('id', $persona->id)
             ->update($request->except('_method', '_token'));
 
-        return redirect()->route('personas.show', [$persona]);
+            return redirect('personas.show')->with([
+                'msj'=>'Información actualizada exitosamente',
+                'alert-type'=>'alert-success'
+            ]);
     }
 
     /**
@@ -113,6 +119,9 @@ class PersonaController extends Controller
     public function destroy(Persona $persona)
     {
         $persona->delete();
-        return redirect()->route("personas.index");
+        return redirect()->route("personas.index")->with([
+            'msj'=>'Se elimino su informacón',
+            'alert-type'=>'alert-success'
+        ]);
     }
 }

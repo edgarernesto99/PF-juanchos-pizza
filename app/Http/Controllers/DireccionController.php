@@ -50,7 +50,10 @@ class DireccionController extends Controller
         $direccion->referencias = $request->referencias;
         $direccion->user_id = Auth::id();
         $direccion->save();
-        return redirect('direcciones');
+        return redirect('direcciones')->with([
+            'msj'=>'Dirección almacenada exitosamente',
+            'alert-type'=>'alert-success'
+        ]);
     }
 
     /**
@@ -94,7 +97,10 @@ class DireccionController extends Controller
         ]);
         Direccion::where('id', $id)
             ->update($request->except('_method', '_token'));
-        return redirect()->route('direcciones.index');
+        return redirect()->route('direcciones.index')->with([
+            'msj'=>'Dirección actualizada exitosamente',
+            'alert-type'=>'alert-success'
+        ]);
     }
 
     /**
@@ -107,6 +113,9 @@ class DireccionController extends Controller
     {
         $direccion = Direccion::get()->where('id','=',$id)->first();
         $direccion->delete();
-        return redirect()->route("direcciones.index");
+        return redirect()->route("direcciones.index")->with([
+            'msj'=>'Dirección eliminada',
+            'alert-type'=>'alert-warning'
+        ]);
     }
 }

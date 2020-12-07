@@ -1,5 +1,5 @@
-@extends('Layouts.Pedidos')
-@section('menu-pedidos')
+@extends('Layouts.tema')
+@section('content')
 <div class="menu">
     <div class="container">
         <div class="menu-tag">

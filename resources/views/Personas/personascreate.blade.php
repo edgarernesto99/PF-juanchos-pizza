@@ -1,5 +1,5 @@
-@extends('Layouts.Personas')
-@section('menu-personas')
+@extends('Layouts.tema')
+@section('content')
     <div>
         @if (isset($persona))
             <h3 class="title-form">EDITAR PERSONA</h3>
