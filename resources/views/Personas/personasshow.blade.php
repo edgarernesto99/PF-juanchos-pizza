@@ -1,19 +1,23 @@
 @extends('Layouts.tema')
 @section('content')
 <div class="show-people">
-    <div class="col-md-4">
-        <a href="{{route('personas.edit',[$persona->id])}}" class="btn btn-primary btn-block">Editar Persona</a>
-    </div>
-    <div class="col-md-4">
-        <a href="{{route('personas.index')}}" class="btn btn-success btn-block">Listado de Personas</a>
-    </div>
-    <div class="col-md-4">
-        <form action="{{ route('personas.destroy', [$persona]) }}" method="POST">
-            @method('DELETE')
-            @csrf
-            <button type="submit" class="btn btn-block btn-warning">Eliminar</button>
-        </form>
-    </div>
+    @can('edit-persona',$persona)
+        <div class="col-md-4">
+            <a href="{{route('personas.edit',[$persona->id])}}" class="btn btn-primary btn-block">Editar Persona</a>
+        </div>
+        <div class="col-md-4">
+            <form action="{{ route('personas.destroy', [$persona]) }}" method="POST">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-block btn-warning">Eliminar</button>
+            </form>
+        </div>
+    @endcan
+    @can('administrador')
+        <div class="col-md-4">
+            <a href="{{route('personas.index')}}" class="btn btn-success btn-block">Listado de Personas</a>
+        </div>
+    @endcan
 
     <div class="show-people">
         <table class= "table" border="2">

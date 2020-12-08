@@ -3,7 +3,7 @@
 <div class="menu">
     <div class="container">
         <div class="menu-tag">
-            <h3 class="title">Personas</h3>
+            <h3 class="title">Personas registradas</h3>
         </div>
         <div class="load_more">
             <div>

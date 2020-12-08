@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProductosController extends Controller
 {
@@ -14,7 +15,7 @@ class ProductosController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except('index','show');
     }
     public function index()
     {
@@ -29,7 +30,10 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        return view('productos/productoscreate');
+        if (Gate::allows('administrador')) {
+            return view('productos/productoscreate');
+        }
+        return redirect('productos');
     }
 
     /**
@@ -80,7 +84,10 @@ class ProductosController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view("productos/productoscreate", compact('producto'));
+        if (Gate::allows('administrador')) {
+            return view("productos/productoscreate", compact('producto'));
+        }
+        return redirect("productos");
     }
 
     /**

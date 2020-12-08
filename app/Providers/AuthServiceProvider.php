@@ -29,16 +29,16 @@ class AuthServiceProvider extends ServiceProvider
             return $user->tipo=='administrador';
         });
 
-        Gate::define('update-persona', function($user, $persona){
+        Gate::define('show-persona', function($user, $persona){
             return $user->id===$persona->user_id;
         });
-        Gate::define('delete-persona', function($user, $persona){
+        Gate::define('edit-persona', function($user, $persona){
             return $user->id===$persona->user_id;
         });
-        Gate::define('update-direccion', function($user, $direccion){
+        Gate::define('show-direccion', function($user, $direccion){
             return $user->id===$direccion->user_id;
         });
-        Gate::define('delete-direccion', function($user, $direccion){
+        Gate::define('edit-direccion', function($user, $direccion){
             return $user->id===$direccion->user_id;
         });
     }

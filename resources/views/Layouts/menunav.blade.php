@@ -25,11 +25,19 @@
                             <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('personas.index') }}">Perfil</a></li>
+                            @can('administrador')
+                            <li><a href="{{ route('personas.index') }}">Personas registradas</a></li>
+                            @else
+                                <li><a href="{{ route('personas.index') }}">Perfil</a></li>
+                            @endcan
                             <li><a href="{{ route('profile.show') }}">Cuenta</a></li>
                             <li><a href="{{ route('direcciones.index') }}">Direcciones</a></li>
                             <li><a href="{{ route('productos.showCart') }}">Carrito de compra</a></li>
-                            <li><a href="{{ route('pedidos.index') }}">Pedidos</a></li>
+                            @can('administrador')
+                                <li><a href="{{ route('pedidos.index') }}">Histoial de pedidos</a></li>
+                            @else
+                                <li><a href="{{ route('pedidos.index') }}">Pedidos</a></li>
+                            @endcan
                             <li><a href="{{ url('dashboard') }}">Dashboard</a></li>
                             <li>
                                 <form class="text-center" method="POST" action="{{ route('logout') }}">

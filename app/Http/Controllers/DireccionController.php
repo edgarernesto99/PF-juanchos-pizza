@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Direccion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class DireccionController extends Controller
 {
@@ -62,10 +63,13 @@ class DireccionController extends Controller
      * @param  \App\Models\Direccion  $direccion
      * @return \Illuminate\Http\Response
      */
-    public function show(Direccion $direccion)
+    public function show($id)
     {
-        dd($direccion);
-        return view('direcciones/direccionesshow', compact('direccion'));
+        $direccion = Direccion::find($id);
+        if (Gate::allows('show-direccion', $direccion)) {
+            return view('direcciones/direccionesshow', compact('direccion'));
+        }
+        return redirect('direcciones');
     }
 
     /**
@@ -76,8 +80,11 @@ class DireccionController extends Controller
      */
     public function edit($id)
     {
-        $direccion = Direccion::get()->where('id','=',$id)->first();
-        return view("direcciones/direccionesForm", compact('direccion'));
+        $direccion = Direccion::find($id);
+        if (Gate::allows('edit-direccion', $direccion)) {
+            return view("direcciones/direccionesForm", compact('direccion'));
+        }
+        return redirect('direcciones');
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PersonaController extends Controller
 {
@@ -15,7 +16,11 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        if (Auth::check()) {
+        if (Gate::allows('administrador')) {
+            $personas = Persona::get();
+            return view('personas/personasindex', compact('personas'));
+        }
+        else {
             $persona = Persona::where('user_id' ,'=' , Auth::id())->first();
             if (empty($persona)) {
                 return view('personas/personascreate');
@@ -26,9 +31,6 @@ class PersonaController extends Controller
                 return self::show($persona);
             }
         }
-
-        $personas = Persona::get();
-        return view('personas/personasindex', compact('personas'));
     }
 
     /**
@@ -38,7 +40,12 @@ class PersonaController extends Controller
      */
     public function create()
     {
-        return view('personas/personascreate');
+        if (Gate::allows('administrador')) {
+            return redirect('personas');
+        }
+        else {
+            return view('personas/personascreate');
+        }
     }
 
     /**
@@ -73,7 +80,10 @@ class PersonaController extends Controller
      */
     public function show(Persona $persona)
     {
-        return view('personas/personasshow', compact('persona'));
+        if (Gate::allows('show-persona', $persona) || Gate::allows('administrador')) {
+            return view('personas/personasshow', compact('persona'));
+        }
+        return redirect('personas');
     }
 
     /**
@@ -84,7 +94,10 @@ class PersonaController extends Controller
      */
     public function edit(Persona $persona)
     {
-        return view("personas/personascreate", compact('persona'));
+        if (Gate::allows('edit-persona', $persona)) {
+            return view("personas/personascreate", compact('persona'));
+        }
+        return redirect('personas');
     }
 
     /**
