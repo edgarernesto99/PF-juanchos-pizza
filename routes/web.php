@@ -21,14 +21,6 @@ Route::get('/', function () {
     return view('inicio');
 });
 
-Route::post('productos/addToCart/{producto}', [ProductosController::class, 'addToCart'])->name('productos.addToCart');
-Route::get('productos/showCart', [ProductosController::class, 'showCart'])->name('productos.showCart');
-Route::delete('productos/removeFromCart/{producto}', [ProductosController::class, 'removeFromCart'])->name('productos.removeFromCart');
-Route::resource('productos', ProductosController::class);
-Route::resource('personas', PersonaController::class);
-Route::resource('direcciones', DireccionController::class);
-Route::resource('pedidos', PedidoController::class);
-
 Route::get('/inicio', function () {
     return view('/inicio');
 })->name('inicio');
@@ -40,6 +32,17 @@ Route::get('/menu', function () {
 Route::get('/nosotros', function () {
     return view("/nosotros");
 })->name('nosotros');
+
+Route::middleware('auth')->group(function(){
+    Route::post('productos/addToCart/{producto}', [ProductosController::class, 'addToCart'])->name('productos.addToCart');
+    Route::get('productos/showCart', [ProductosController::class, 'showCart'])->name('productos.showCart');
+    Route::delete('productos/removeFromCart/{producto}', [ProductosController::class, 'removeFromCart'])->name('productos.removeFromCart');
+    Route::resource('personas', PersonaController::class);
+    Route::resource('direcciones', DireccionController::class);
+    Route::resource('pedidos', PedidoController::class);
+});
+
+Route::resource('productos', ProductosController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
