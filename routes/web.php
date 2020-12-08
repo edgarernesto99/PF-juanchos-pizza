@@ -37,6 +37,10 @@ Route::get('/menu', function () {
     return redirect("/productos");
 })->name('menu');
 
+Route::get('/nosotros', function () {
+    return view("/nosotros");
+})->name('nosotros');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

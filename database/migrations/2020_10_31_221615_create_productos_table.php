@@ -21,6 +21,7 @@ class CreateProductosTable extends Migration
             $table->enum('tipo', ['Pizza', 'Complemento']);
             $table->string("tamanio", 20)->nullable();
             $table->binary("imagen");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

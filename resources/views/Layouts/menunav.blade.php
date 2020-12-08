@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav cl-effect-14">
                 <li><a href="{{ route('inicio') }}" class="active">Inicio</a></li>
                 <li><a href="{{ route('menu') }}">Menu</a></li>
-                <li><a href="about.html">Información</a></li>
+                <li><a href="{{ route('nosotros') }}">Información</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
