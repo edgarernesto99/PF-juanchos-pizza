@@ -68,7 +68,7 @@
                         </div>
                     </li>
             </div>
-            @if (\Auth::user()->tipo == 'administrador')
+            @if (\Auth::check() && \Auth::user()->tipo == 'administrador')
                 <div class="flex-left boton">
                     <a href="productos/create" class="boton btn btn-primary">Crear Producto</a>
                 </div>

@@ -18,7 +18,7 @@ use App\Http\Controllers\PersonaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
 
 Route::post('productos/addToCart/{producto}', [ProductosController::class, 'addToCart'])->name('productos.addToCart');

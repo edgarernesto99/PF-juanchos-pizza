@@ -16,23 +16,49 @@
                 <li><a href="{{ route('nosotros') }}">Información</a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <button type="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user"></span> 
-                        <strong>{{ Auth::user()->name }}</strong>
-                        <span class="glyphicon glyphicon-chevron-down"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ route('personas.index') }}">Perfil</a></li>
-                        <li><a href="{{ route('direcciones.index') }}">Direcciones</a></li>
-                        <li><a href="{{ route('productos.showCart') }}">Carrito de compra</a></li>
-                        <li><a href="{{ route('pedidos.index') }}">Pedidos</a></li>
-                        <li><a href="{{ url('dashboard') }}">Dashboard</a></li>
-
-                    </ul>
-                </li>
-            </ul>
+            @if (\Auth::check())
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <button type="button" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span> 
+                            <strong>{{ Auth::user()->name }}</strong>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('personas.index') }}">Perfil</a></li>
+                            <li><a href="{{ route('profile.show') }}">Cuenta</a></li>
+                            <li><a href="{{ route('direcciones.index') }}">Direcciones</a></li>
+                            <li><a href="{{ route('productos.showCart') }}">Carrito de compra</a></li>
+                            <li><a href="{{ route('pedidos.index') }}">Pedidos</a></li>
+                            <li><a href="{{ url('dashboard') }}">Dashboard</a></li>
+                            <li>
+                                <form class="text-center" method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a href="{{ route('logout') }}"
+                                                        onclick="event.preventDefault();
+                                                                    this.closest('form').submit();">
+                                        Cerrar sesión
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            @else
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <button type="button" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span> 
+                            <strong></strong>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
+                            <li><a href="{{ route('register') }}">Registrarse</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            @endif
         </div>
 
     </nav>
