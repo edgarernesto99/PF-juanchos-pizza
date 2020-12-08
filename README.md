@@ -5,8 +5,12 @@ Este es un proyecto ejemplo para el desarrollo en un sistema web utilizando Lara
 ## Nombre del proyecto
 juanchos-pizza
 
-## Descripción del proyecto
+## Descripción del objetivo del proyecto
 
+El objetivo de la página es que el dueño del establecimiento tenga una 
+herramienta que sea fácil de entender, que pueda controlar y sobre todo 
+para mejorar su negocio, al mismo tiempo tener otra forma de publicidad 
+y  poder llegar a más personas para crecer poco a poco.
 
 ## Integrantes
 1. Edgar Guzmán
